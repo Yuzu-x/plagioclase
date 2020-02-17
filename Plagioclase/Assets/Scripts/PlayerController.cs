@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
 {
-    public float horizontalSpeed = 0.6f;
+    public float horizontalSpeed = 0.1f;
     public bool isBoosting = false;
     public float maxHealth = 100f;
     public float currentHealth;
@@ -36,36 +36,39 @@ public class PlayerController : MonoBehaviour
     {
         verticalVelocity = astro.velocity.magnitude;
 
-        if (Input.GetKey(KeyCode.Space))
+        if (playerAlive)
         {
-            isBoosting = true;
-        }
-        else
-        {
-            isBoosting = false;
-        }
+            if (Input.GetKey(KeyCode.Space))
+            {
+                isBoosting = true;
+            }
+            else
+            {
+                isBoosting = false;
+            }
 
-        float moveHorizontal = Input.GetAxisRaw("Horizontal");
-        Vector2 movement = new Vector2(moveHorizontal, 0);
-        astro.AddForce(movement * horizontalSpeed);
+            float moveHorizontal = Input.GetAxisRaw("Horizontal");
+            Vector2 movement = new Vector2(moveHorizontal, 0);
+            astro.AddForce(movement * horizontalSpeed);
 
-        boostBar.fillAmount = currentBoost / maxBoost;
+            boostBar.fillAmount = currentBoost / maxBoost;
 
-        if(isBoosting)
-        {
-            astro.gravityScale = 0;
-            astro.drag = 10;
-            horizontalSpeed = 0.3f;
-            currentBoost = currentBoost - 1 * Time.deltaTime;
+            if (isBoosting)
+            {
+                astro.gravityScale = 0;
+                astro.drag = 10;
+                horizontalSpeed = 0.1f;
+                currentBoost = currentBoost - 1 * Time.deltaTime;
+            }
+            else if (!isBoosting)
+            {
+                astro.gravityScale = 0.3f;
+                astro.drag = 0;
+                horizontalSpeed = 0.3f;
+            }
+
+            touchedGround = Physics2D.OverlapCircle(feetPos.position, checkRadius, whatIsGround);
         }
-        else if(!isBoosting)
-        {
-            astro.gravityScale = 0.3f;
-            astro.drag = 0;
-            horizontalSpeed = 0.6f;
-        }
-
-        touchedGround = Physics2D.OverlapCircle(feetPos.position, checkRadius, whatIsGround);
 
 
         if (verticalVelocity >= 6 && touchedGround)
