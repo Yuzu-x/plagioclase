@@ -11,12 +11,12 @@ public class ChunkGenerator : MonoBehaviour
     public GameObject player;
 
     public GameObject nextLayout;
+    public GameObject previousLayout;
 
     public float layoutPicker;
 
     public BoxCollider2D topCollider;
 
-    public float prevLayoutTop;
 
 
     void Start()
@@ -44,7 +44,7 @@ public class ChunkGenerator : MonoBehaviour
 
 
     }
-    
+
 
     void OnTriggerEnter2D(Collider2D layout)
     {
@@ -68,7 +68,7 @@ public class ChunkGenerator : MonoBehaviour
             {
                 nextLayout = layout4;
             }
-            Instantiate(nextLayout, new Vector2(0, player.transform.position.y - 31.3f), Quaternion.identity);
+            Instantiate(nextLayout, new Vector2(0, player.transform.position.y - 26f), Quaternion.identity);
         }
     }
 }
