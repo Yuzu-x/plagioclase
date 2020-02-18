@@ -38,7 +38,7 @@ public class PlayerController : MonoBehaviour
 
         if (playerAlive)
         {
-            if (Input.GetKey(KeyCode.Space))
+            if (Input.GetKey(KeyCode.Space) && currentBoost > 0)
             {
                 isBoosting = true;
             }

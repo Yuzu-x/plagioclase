@@ -68,6 +68,9 @@
     <Compile Include="Assets\Scripts\Patrolling.cs" />
     <Compile Include="Assets\Scripts\PlayerController.cs" />
     <Compile Include="Assets\Scripts\PowerUpBase.cs" />
+    <Compile Include="Assets\Scripts\ReceiverBehaviour.cs" />
+    <Compile Include="Assets\Scripts\TouchControls.cs" />
+    <Compile Include="Assets\Scripts\TouchInput.cs" />
     <Reference Include="Unity.Timeline.Editor">
       <HintPath>C:/Users/benjamin.rorison/Documents/GitHub/plagioclase/Plagioclase/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
     </Reference>

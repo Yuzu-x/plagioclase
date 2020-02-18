@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6715005208752226852}
   m_Layer: 0
-  m_Name: GameObject (2)
+  m_Name: GridThree
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -38,6 +38,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 6715005208752226852}
     m_Modifications:
+    - target: {fileID: 4193724366765623428, guid: d0fb378fa55f7ce4d8a6dc67e588d518,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 8024744741835817530, guid: d0fb378fa55f7ce4d8a6dc67e588d518,
         type: 3}
       propertyPath: m_LocalPosition.x

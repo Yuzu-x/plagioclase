@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5487130544756349890}
   m_Layer: 0
-  m_Name: GameObject (3)
+  m_Name: GridFour
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -97,6 +97,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Grid
+      objectReference: {fileID: 0}
+    - target: {fileID: 7421077548357599787, guid: 38dbc5be8618027419b9a8ab9e469277,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 38dbc5be8618027419b9a8ab9e469277, type: 3}

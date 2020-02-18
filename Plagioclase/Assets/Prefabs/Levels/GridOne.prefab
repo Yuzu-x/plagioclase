@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 623856772783627971}
   m_Layer: 0
-  m_Name: GameObject
+  m_Name: GridOne
   m_TagString: Untagged
   m_Icon: {fileID: 3936346786652291628, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
@@ -97,6 +97,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Grid 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5893359511981639486, guid: 01dc2cb3a620ff84a9f2a91db957b37a,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 01dc2cb3a620ff84a9f2a91db957b37a, type: 3}
