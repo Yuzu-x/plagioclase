@@ -14823,8 +14823,12 @@ MonoBehaviour:
   layout6: {fileID: 1583628302803567949, guid: 071935a534a6a664897ffbb08230c3c8, type: 3}
   layout7: {fileID: 898771897766626134, guid: fc4ba623818dc474fab6ec65e2f037b0, type: 3}
   player: {fileID: 2029970481}
+  boosterPU: {fileID: 920585990737809258, guid: 64a47250a50d42f4cac942a66b68b54e,
+    type: 3}
   nextLayout: {fileID: 0}
   layoutPicker: 0
+  powerUpSpawner: 0
   layoutClone: {fileID: 0}
+  powerUpClone: {fileID: 0}
   oldestLayoutClone: {fileID: 0}
   topCollider: {fileID: 0}

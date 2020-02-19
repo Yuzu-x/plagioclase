@@ -13,11 +13,15 @@ public class ChunkGenerator : MonoBehaviour
     public GameObject layout7;
     public GameObject player;
 
+    public GameObject boosterPU;
+
     public GameObject nextLayout;
 
     public float layoutPicker;
+    public float powerUpSpawner;
     private List<GameObject> layoutGeneratedOrder = new List<GameObject>();
     public GameObject layoutClone;
+    public GameObject powerUpClone;
     public GameObject oldestLayoutClone;
 
     public BoxCollider2D topCollider;
@@ -88,6 +92,8 @@ public class ChunkGenerator : MonoBehaviour
         if (layout.gameObject.tag == "Layout")
         {
             layoutPicker = Random.Range(1, 8);
+            powerUpSpawner = Random.Range(1, 9);
+
             if (layoutPicker == 1)
             {
                 nextLayout = layout1;
@@ -116,7 +122,16 @@ public class ChunkGenerator : MonoBehaviour
             {
                 nextLayout = layout7;
             }
-                 layoutClone = Instantiate(nextLayout, new Vector2(0, layout.transform.position.y - 7.6f), Quaternion.identity);
+
+            if(powerUpSpawner == 1)
+            {
+                powerUpClone = Instantiate(boosterPU, new Vector2(Random.Range(-2, 3), layout.transform.position.y - 8f), Quaternion.identity);
+            }
+            else
+            {
+                powerUpSpawner = 0;
+            }
+                 layoutClone = Instantiate(nextLayout, new Vector2(0, layout.transform.position.y - 8.0f), Quaternion.identity);
             layoutGeneratedOrder.Add(layoutClone);
         }
     }
