@@ -12,6 +12,7 @@ public class PlayerController : MonoBehaviour
     public float currentBoost;
     public float maxBoost = 30f;
     public Image boostBar;
+    public ParticleSystem boostParticles;
 
     public Rigidbody2D astro;
 
@@ -21,6 +22,10 @@ public class PlayerController : MonoBehaviour
     public Transform feetPos;
     public float checkRadius;
     public LayerMask whatIsGround;
+    public ParticleSystem trail;
+
+    public bool isIntro = false;
+    public Animator animator;
 
     public bool playerAlive = true;
 
@@ -28,8 +33,12 @@ public class PlayerController : MonoBehaviour
     {
         currentBoost = maxBoost;
         currentHealth = maxHealth;
+        trail.Stop();
+        boostParticles.Stop();
 
         ground = GameObject.FindGameObjectWithTag("Ground");
+
+        animator = GetComponent<Animator>();
     }
 
     public void Update()
@@ -59,6 +68,7 @@ public class PlayerController : MonoBehaviour
                 astro.drag = 10;
                 horizontalSpeed = 0.1f;
                 currentBoost = currentBoost - 1 * Time.deltaTime;
+                boostParticles.Play();
             }
             else if (!isBoosting)
             {
@@ -71,11 +81,48 @@ public class PlayerController : MonoBehaviour
         }
 
 
-        if (verticalVelocity >= 6 && touchedGround)
+        if (verticalVelocity >= 6f)
         {
-            currentHealth = 0;
+            trail.Play();
+
+            if (touchedGround)
+            {
+                currentHealth = 0;
+            }
+        }
+        else
+        {
+            trail.Stop();
         }
 
+        if(transform.position.y >= 4.78 && transform.position.y <= 4.79)
+        {
+            animator.SetBool("isIntro", true);
+            isIntro = true;
+        }
+        else
+        {
+            isIntro = false;
+            animator.SetBool("isIntro", false);
+        }
+
+        if (transform.position.y >= 0)
+        {
+            astro.gravityScale = 0.1f;
+        }
+    }
+
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if(collision.gameObject.tag == "Booster")
+        {
+            currentBoost = currentBoost + 10f;
+            if(currentBoost > maxBoost)
+            {
+                currentBoost = maxBoost;
+            }
+        }
     }
     public void LateUpdate()
     {

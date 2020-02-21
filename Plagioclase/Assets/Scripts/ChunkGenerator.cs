@@ -11,6 +11,9 @@ public class ChunkGenerator : MonoBehaviour
     public GameObject layout5;
     public GameObject layout6;
     public GameObject layout7;
+    public GameObject layout8;
+    public GameObject layout9;
+    public GameObject layout10;
     public GameObject player;
 
     public GameObject boosterPU;
@@ -30,7 +33,7 @@ public class ChunkGenerator : MonoBehaviour
 
     void Start()
     {
-        layoutPicker = Random.Range(1, 8);
+        layoutPicker = Random.Range(1, 11);
         if (layoutPicker == 1)
         {
             nextLayout = layout1;
@@ -59,7 +62,19 @@ public class ChunkGenerator : MonoBehaviour
         {
             nextLayout = layout7;
         }
-       layoutClone = Instantiate(nextLayout, new Vector2(0, -16), Quaternion.identity);
+        else if (layoutPicker == 8)
+        {
+            nextLayout = layout8;
+        }
+        else if (layoutPicker == 9)
+        {
+            nextLayout = layout9;
+        }
+        else if (layoutPicker == 10)
+        {
+            nextLayout = layout10;
+        }
+        layoutClone = Instantiate(nextLayout, new Vector2(0, -16), Quaternion.identity);
         layoutGeneratedOrder.Add(layoutClone);
         topCollider = nextLayout.GetComponent<BoxCollider2D>();
 
@@ -82,6 +97,15 @@ public class ChunkGenerator : MonoBehaviour
 
         }
 
+        if (powerUpClone != null)
+        {
+            if (powerUpClone.transform.position.y >= player.transform.position.y + 20 || powerUpClone.transform.position.y <= player.transform.position.y - 80)
+            {
+                Destroy(powerUpClone);
+                powerUpClone = null;
+            }
+        }
+
     }
 
 
@@ -91,8 +115,8 @@ public class ChunkGenerator : MonoBehaviour
     {
         if (layout.gameObject.tag == "Layout")
         {
-            layoutPicker = Random.Range(1, 8);
-            powerUpSpawner = Random.Range(1, 9);
+            layoutPicker = Random.Range(1, 11);
+            powerUpSpawner = Random.Range(1, 6);
 
             if (layoutPicker == 1)
             {
@@ -122,17 +146,31 @@ public class ChunkGenerator : MonoBehaviour
             {
                 nextLayout = layout7;
             }
+            else if (layoutPicker == 8)
+            {
+                nextLayout = layout8;
+            }
+            else if (layoutPicker == 9)
+            {
+                nextLayout = layout9;
+            }
+            else if (layoutPicker == 10)
+            {
+                nextLayout = layout10;
+            }
 
-            if(powerUpSpawner == 1)
+            if (powerUpSpawner == 1 && powerUpClone == null)
             {
-                powerUpClone = Instantiate(boosterPU, new Vector2(Random.Range(-2, 3), layout.transform.position.y - 8f), Quaternion.identity);
+                powerUpClone = Instantiate(boosterPU, new Vector2(0, layout.transform.position.y), Quaternion.identity);
             }
-            else
-            {
-                powerUpSpawner = 0;
-            }
-                 layoutClone = Instantiate(nextLayout, new Vector2(0, layout.transform.position.y - 8.0f), Quaternion.identity);
+            layoutClone = Instantiate(nextLayout, new Vector2(0, layout.transform.position.y - 8f), Quaternion.identity);
             layoutGeneratedOrder.Add(layoutClone);
+        }
+
+        if(layout.gameObject.tag == "Booster")
+        {
+            Destroy(powerUpClone);
+            powerUpClone = null;
         }
     }
 }

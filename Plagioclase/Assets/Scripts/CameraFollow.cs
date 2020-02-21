@@ -11,12 +11,18 @@ public class CameraFollow : MonoBehaviour
 
     void Start()
     {
-        offset = transform.position - player.transform.position;
+        offset.x = 0;
+        offset.y = transform.position.y - player.transform.position.y - 1;
+        offset.z = -10;
     }
 
 
     void LateUpdate()
     {
         transform.position = new Vector3(0, player.transform.position.y, 0) + offset;   
+        if(transform.position.x != 0)
+        {
+            transform.position = new Vector3(0, player.transform.position.y, 0) + offset;
+        }
     }
 }
