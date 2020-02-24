@@ -20,6 +20,7 @@ public class MenuController : MonoBehaviour
         introText.enabled = true;
         boostPanel.enabled = false;
         boostBar.enabled = false;
+        astronaut.GetComponent<Rigidbody2D>().gravityScale = 0f;
 
     }
 

@@ -24,7 +24,7 @@ public class PlayerController : MonoBehaviour
     public LayerMask whatIsGround;
     public ParticleSystem trail;
 
-    public bool isIntro = false;
+    public bool isIntro = true;
     public Animator animator;
 
     public bool playerAlive = true;
@@ -45,8 +45,9 @@ public class PlayerController : MonoBehaviour
     {
         verticalVelocity = astro.velocity.magnitude;
 
-        if (playerAlive)
+        if (playerAlive && !isIntro && transform.position.y < 4.5f)
         {
+            astro.gravityScale = 0.3f;
             if (Input.GetKey(KeyCode.Space) && currentBoost > 0)
             {
                 isBoosting = true;
@@ -95,10 +96,15 @@ public class PlayerController : MonoBehaviour
             trail.Stop();
         }
 
-        if(transform.position.y >= 4.78 && transform.position.y <= 4.79)
+        if(transform.position.y >= 4.78)
         {
-            animator.SetBool("isIntro", true);
             isIntro = true;
+
+            if (transform.position.y <= 4.79)
+            {
+                animator.SetBool("isIntro", true);
+            }
+
         }
         else
         {

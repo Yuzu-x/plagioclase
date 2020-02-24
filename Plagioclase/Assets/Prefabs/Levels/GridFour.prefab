@@ -98,6 +98,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Grid
       objectReference: {fileID: 0}
+    - target: {fileID: 7421077548357599785, guid: 38dbc5be8618027419b9a8ab9e469277,
+        type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 6200000, guid: 0bc82d70521a303409af9b9b3d4cec1f, type: 2}
     - target: {fileID: 7421077548357599787, guid: 38dbc5be8618027419b9a8ab9e469277,
         type: 3}
       propertyPath: m_Layer
