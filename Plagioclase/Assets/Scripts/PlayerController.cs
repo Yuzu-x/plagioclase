@@ -23,11 +23,14 @@ public class PlayerController : MonoBehaviour
     public float checkRadius;
     public LayerMask whatIsGround;
     public ParticleSystem trail;
+    public GameObject deathSpot;
+    List<GameObject> deathMarks = new List<GameObject>();
 
     public bool isIntro = true;
     public Animator animator;
 
     public bool playerAlive = true;
+    public bool headMarked = false;
 
     public void Start()
     {
@@ -135,8 +138,24 @@ public class PlayerController : MonoBehaviour
         if(currentHealth <= 0)
         {
             playerAlive = false;
+            OnDeath();
         }
     }
 
 
+    public void OnDeath()
+    {
+        if(verticalVelocity == 0 && !headMarked)
+        {
+            GameObject deathMarker = Instantiate(deathSpot, transform.position, Quaternion.identity) as GameObject;
+            deathMarks.Add(deathMarker);
+            headMarked = true;
+        }
+
+        if(deathMarks.Count > 1)
+        {
+            deathMarks.RemoveAt(0);
+
+        }
+    }
 }

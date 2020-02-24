@@ -8,11 +8,15 @@ public class MenuController : MonoBehaviour
     public Text introText;
     public Image boostPanel;
     public Image boostBar;
+    public Image deathScreen;
     public Camera cam;
     public GameObject marker;
     public GameObject astronaut;
     public float gameStartTimer = 0f;
     public bool startGame = false;
+
+    List<GameObject> deathMarkers = new List<GameObject>();
+
 
     void Start()
     {
@@ -21,6 +25,7 @@ public class MenuController : MonoBehaviour
         boostPanel.enabled = false;
         boostBar.enabled = false;
         astronaut.GetComponent<Rigidbody2D>().gravityScale = 0f;
+        deathScreen.enabled = false;
 
     }
 
@@ -65,6 +70,17 @@ public class MenuController : MonoBehaviour
             {
                 gameStartTimer = 0;
             }
+        }
+
+        foreach(GameObject marker in GameObject.FindGameObjectsWithTag("Marker"))
+        {
+            deathMarkers.Add(marker);
+
+        }
+
+        if(deathMarkers.Count > 1)
+        {
+            deathMarkers.RemoveAt(0);
         }
     }
 }
